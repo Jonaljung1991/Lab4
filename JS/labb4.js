@@ -1,10 +1,12 @@
-let oneKey = 0; // Keeping one key per person in check
+
+let loaded = function () {
 let getKey = document.getElementsByClassName('getKey');
 let addBook = document.getElementsByClassName('addBook');
 let viewContent = document.getElementById('viewContent');
 let viewBooks = document.getElementsByClassName('viewBooks');
+let oneKey = 0; // Making sure there's only one generated key
 let changeData = document.getElementsByClassName('changeData');
-let urlThis ='https://www.forverkliga.se/JavaScript/api/crud.php?'
+let url ='https://www.forverkliga.se/JavaScript/api/crud.php?'
 
 
 
@@ -19,59 +21,54 @@ let mainAPI = {
 
 };
 
-function retrieveKey(){
-    if(oneKey <1){
-    
-  let y =fetch('https://www.forverkliga.se/JavaScript/api/crud.php?requestKey').then(function(response){
-      
-    return response.json();
-  }).then(function (json){
-      let x = json.key;
-      oneKey++;
-    console.log(x)
-      return x;
-
-  });
-    
-}
-    
-}
-
-
-function addBookHere(){
-    fetch('https://www.forverkliga.se/JavaScript/api/crud.php?op=insert&key=TpvUU&title=tokyodrift&author=jason', mainAPI).then(function(response){
-        return response.json();
-    }).then(function(json){
-        console.log(json);
-    }).then(function(json){
-        console.log(json);
-    })
-}
-
-function viewData(){
-    fetch('https://www.forverkliga.se/JavaScript/api/crud.php?op=select&key=TpvUU').then(function(response){
-        return response.json()
-    }).then(function(json){
-        for(i=0; i<json.data.length; i++){
-            viewContent.innerHTML = "ID : " + json.data[i].id + "</br>" +
-                "Title : " + json.data[i].title + "</br>" + 
-                    "Author : " + json.data[i].author
-            console.log(json.data);
-           
+function retrieveKey() {
+        if (oneKey < 1) {
+            return fetch(`${url}?requestKey`).then(function (response) {
+                return response.json()
+            }).then(function (json) {
+                let theKey = json.key;
+                console.log(theKey);
+                oneKey++;
+                viewContent.innerHTML = theKey;
+            });
         }
-    })
-}
+    }
+    
+    function saveKey(Event){
+       return Event.target.value;
+    }
+  
+    function addBookHere(uniqueKey) {
+        uniqueKey = verifyKey.value;
+        fetch(`${url}?op=insert&key=${uniqueKey}&title=TokyoDrift&author=Jake`, mainAPI).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            console.log(json);
+        })
+    }
+    
+    function viewData(uniqueKey) {
+        uniqueKey = verifyKey.value
+        fetch(`${url}?op=select&key=${uniqueKey}`).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            for (i = 0; i < json.data.length; i++) {
+                viewContent.innerHTML = "ID : " + json.data[i].id + "</br>" +
+                    "Title : " + json.data[i].title + "</br>" + "Author : " +
+                    json.data[i].author;
+                console.log(json.data[i]);
+            }
+        });
+    }
 
-function deleteData(){
-    fetch('https://www.forverkliga.se/JavaScript/api/crud.php?op=delete&key=TpvUU&id=14903').then(function(response){
-        return response.json()
-    }).then(function(json){
-        console.log(json);
-    })
-}
-
+    function deleteData() {
+        fetch(`${url}?op=delete&key=3LWs6&id=14705`).then(function (response) {
+            return response.json();
+        }).then(function (json) {})
+    }
+  
 function updateData () {
-    fetch('https://www.forverkliga.se/JavaScript/api/crud.php?op=update&key=TpvUU&id=14900&title=NewTitle&author=newAuthor').then(function(response){
+    fetch(`${url}?op=update&key=3LWs6&id=14705&title=newtitle&author&newAuthor`).then(function(response){
         return response.json()
     }).then(function(json){
         for(i = 0; i<json.data.length; i++){
@@ -97,4 +94,8 @@ changeData[0].addEventListener('click', updateData);
 
 
 
+
+
+};
+window.addEventListener("load", loaded);
 
