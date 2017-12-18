@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title> TEsteSArsr</title>
-    <link rel="stylesheet" type="text/css" href="labb4.css">
-<script src="JS/labb4.js"></script>
-    </head>
+    <link rel="stylesheet" type="text/css" href="CSS/labb4.css">
+    <script src="JS/labb4.js"></script>
+</head>
 
 <body>
-<h1> Book Catalogue</h1>
-<button class="getKey"> Get Key</button>
+    <main>
+        <h1> Book Catalogue</h1>
+        <div  class="keyBox"> 
+            <button id="btnStyle"  class="getKey">Get Key</button>
+            <div id="viewContent"></div>
+        </div>
 
-    <button class="addBook"> Add Book</button>
-    <button class="viewBooks">view Books</button>
-   <!-- <button class ="changeData"> Confirm changes</button>-->
-    <div id="viewContent" style="border: 2px solid black; height:3em;"></div>
-    <div id="bookShelf" Style =" border:2px solid orange; height: 6em; margin-top: 3%;"></div>
-    <nav><input class = "regFields" type = "text" placeholder="Username">
-        <input class = "regFields" type = "password" placeholder="password">
-        <button class= "regFields" > Register </button>
-        <button class="logBtn" style="margin: 5%;"> Log in </button>
-        <button class="logBtn"> Log out </button>
-        <div id="statusContainer" style="border: 2px solid black; height:6em; margin-top:5%;"> No status yet</div>
-    </nav>
+        <button class="addBook" > Add Book</button>
+        <button  class="viewBooks" >view Books</button>
+        <!-- <button class ="changeData"> Confirm changes</button>-->
+
+        <div id="bookShelf" Style=" border:2px solid orange; height: 6em; margin-top: 3%;"></div>
+        <nav><input class="regFields" type="text" placeholder="Username">
+            <input class="regFields" type="password" placeholder="password">
+            <button class="regFields" > Register </button>
+            <button class="logBtn" style="margin: 5%;" > Log in </button>
+            <button class="logBtn" > Log out </button>
+            <div id="statusContainer" style="border: 2px solid black; height:6em; margin-top:5%;"> No status yet</div>
+        </nav>
+    </main>
 </body>
 
 </html>
