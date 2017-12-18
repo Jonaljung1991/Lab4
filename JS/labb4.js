@@ -164,11 +164,11 @@ let loaded = function () {
     htmlElements.regFields[0].addEventListener("change", personObject.registerName);
     htmlElements.regFields[1].addEventListener("change", personObject.registerPassword);
     htmlElements.regFields[2].addEventListener("click", personObject.CreateUser);
-    htmlElements.logBtn[0].addEventListener("click", personObject.forEachKey)
+    htmlElements.logBtn[0].addEventListener("click", personObject.forEachKey);
     htmlElements.viewBooks.addEventListener("click", viewData);
     htmlElements.getKey.addEventListener('click', retrieveKey);
     htmlElements.addBook.addEventListener('click', addBookHere);
-    //verifyKey.addEventListener("change", saveKey);
-    htmlElements.changeData.addEventListener('click', updateData);
+    // verifyKey.addEventListener("change", saveKey);
+    // htmlElements.changeData.addEventListener('click', updateData);
 };
 window.addEventListener("load", loaded);
