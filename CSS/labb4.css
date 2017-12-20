@@ -1,11 +1,84 @@
-.viewBooks{
+body {
+    margin: 0;
+}
+
+main {
+    background-image: url("bookcase-1869616_1920.jpg");
+    background-size: cover;
+    height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+.keyBox {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10vw%;
+    height: 12%;
+    border: 2px solid black;
+    background: black;
+}
+    
+media screen and (max-width:950px){
+#viewContent {
+    font-size: 1rem;
+    color:yellow;
+    
+}
+}
+
+#bookShelf{
+    margin-bottom:  20px;
     margin: 30px;
 }
 
-.addBook{
-    margin:30px;
+
+#viewContent {
+   flex: 1 1 auto;
+    width: 75%;
+    height: 75%;
+    color: yellow;
+    font-size: 2rem;
 }
 
-.getKey{
-    margin: 30px;
+#btnStyle {
+    border-radius: 4px;
+    background-color: orange;
+}
+
+media screen and (max-width:600px) (min-width: 350px){
+    .regFields{
+        width:100%
+    }
+    
+    
+    
+}
+
+#statusContainer{
+    position: absolute;
+    top:60%;
+    left: 10%;
+    height: 80%;
+    width: 80%;
+    
+    
+        
+}
+
+#bookShelf{
+    position: absolute;
+    top:30%;
+    left:10%;
+    height: 80%;
+    width:80%;
+        
+}
+        
 }

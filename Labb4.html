@@ -1,46 +1,34 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title> TEsteSArsr</title>
-
     <link rel="stylesheet" type="text/css" href="CSS/labb4.css">
-   
-
-   
-<script src="JS/labb4.js"></script>
-    </head>
-
+    <script src="JS/labb4.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
 <body>
-<h1> Book Catalogue</h1>
-<button class="getKey"> Get Key</button>
+    <main>
+        <h1> Book Catalogue</h1>
+        <div  class="keyBox"> 
+            <button id="btnStyle"  class="getKey">Get Key</button>
+            <div id="viewContent"></div>
+        </div>
 
-    <button class="addBook"> Add Book</button>
+        <button class="addBook" > Add Book</button>
+        <button  class="viewBooks" >view Books</button>
+        <!-- <button class ="changeData"> Confirm changes</button>-->
 
-    
-    <button class= "viewBooks"> View Books </button>
-    
-    <button class ="changeData"> Confirm changes</button>
-    <nav>
-        
-        <input class="regFields" type="text" placeholder="Username">
-        <input class="regFields" type ="password" placeholder="Password">
-        <button class ="regFields"> Register</button>
-    
-    </nav>
-     
-    <div id="viewContent">1</div>
-
-    
-    <div id="viewContent"></div>
-     
-    <div id ="statusContainer" style="border: 2px solid black; height:2em; margin-top: 5%;"> Nothing to show </div>
-
-
-
-
-
+        <nav><input class="regFields" type="text" placeholder="Username">
+            <input class="regFields" type="password" placeholder="password">
+            <button class="regFields" > Register </button>
+            <button class="logBtn" style="margin: 5%;" > Log in </button>
+            <button class="logBtn" > Log out </button>
+        <div id="bookShelf" Style=" border:2px solid orange; height: 6em; margin-top: 3%;"></div>
+            <div id="statusContainer" style="border: 2px solid black; height:6em; margin-top:5%;"> No status yet</div>
+        </nav>
+    </main>
 </body>
-
 
 </html>
