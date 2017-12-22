@@ -9,14 +9,17 @@ let loaded = function () {
         bookShelf: document.getElementById("bookShelf"),
         regFields: document.getElementsByClassName("regFields"),
         statusContainer: document.getElementById("statusContainer"),
-        logBtn: document.getElementsByClassName("logBtn")
+        logBtn: document.getElementsByClassName("logBtn"),
+        getTitle: document.getElementById("getTitle"),
+        getAuthor:document.getElementById("getAuthor"),
+        Counterbox: document.getElementById("counter")
     };
 
 
 
-    let counter = 0;
     let oneKey = 0; // Making sure there's only one generated key
     let url = "https://www.forverkliga.se/JavaScript/api/crud.php";
+    let counter = 0;
 
 
 
@@ -34,6 +37,7 @@ let loaded = function () {
                 htmlElements.statusContainer.innerHTML = `There was an Error with the request, please try again.`;
                 console.log(`The error is : ${Error}`);
                 counter++;
+                 htmlElements.Counterbox.innerHTML = `Errors occured : ${counter}`;
             })
         }
     }
@@ -47,20 +51,22 @@ let loaded = function () {
             mode: 'cors',
             cache: 'default'
         };
+        let title = htmlElements.getTitle.value;
+        let author = htmlElements.getAuthor.value;
         uniqueKey = htmlElements.viewContent.innerHTML;
-        fetch(`${url}?op=insert&key=${uniqueKey}&title=TokyoDrift&author=Jake`, mainAPI, Error).then(function (response) {
+        fetch(`${url}?op=insert&key=${uniqueKey}&title=${title}&author=${author}`, Error, mainAPI).then(function (response) {
             return response.json();
         }).then(function (json) {
-            console.log(json);
-            if (json.status === "Success")
+            if (json.status === "success")
                 htmlElements.statusContainer.innerHTML = `Status : ${json.status} </br> Message : ${json.message} </br> Id : ${json.id}`;
-            else {
-                htmlElements.statusContainer.innerHTML = `Status : ${json.status}</br> Message : ${json.message}`;
+            if(json.status === "error") {
+                counter++;
+                htmlElements.Counterbox.innerHTML = `Errors occured : ${counter}`;
             }
-
         }).catch(function (Error) {
-            console.log(`The error is : ${Error}`);
             counter++;
+            console.log(`The error is : ${Error}`);
+             htmlElements.Counterbox.innerHTML = `Errors occured : ${counter}`;
         })
     }
 
@@ -70,15 +76,16 @@ let loaded = function () {
             return response.json();
         }).then(function (json) {
             for (i = 0; i < json.data.length; i++) {
-                htmlElements.bookShelf.innerHTML += "ID : " + json.data[i].id + "</br>" +
-                    "Title : " + json.data[i].title + "</br>" + "Author : " +
-                    json.data[i].author;
+                htmlElements.bookShelf.innerHTML +=
+                    "Title : " + json.data[i].title + ", " + "Author : " +
+                    json.data[i].author + "</br>";
                 console.log(json.data[i]);
             }
         }).catch(function (Error) {
             console.log(`The error is : ${Error}`);
             counter++;
             console.log(counter);
+             htmlElements.Counterbox.innerHTML = `Errors occured : ${counter}`;
         })
     }
 
@@ -88,6 +95,7 @@ let loaded = function () {
         }).then(function (json) {}).catch(function (Error) {
             counter++;
             console.log(`The error is : ${Error}`);
+             htmlElements.Counterbox.innerHTML = `Errors occured : ${counter}`;
         })
     }
 
@@ -159,7 +167,7 @@ let loaded = function () {
         }
     };
 
-
+    htmlElements.Counterbox.innerHTML = `Errors occured : ${counter}`;
 
     htmlElements.regFields[0].addEventListener("change", personObject.registerName);
     htmlElements.regFields[1].addEventListener("change", personObject.registerPassword);
